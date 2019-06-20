@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GetDataService } from '../get-data.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private getDataService: GetDataService) { }
   public productList = [];
 
   public searchText;
@@ -17,15 +18,12 @@ export class ProductListComponent implements OnInit {
   }
 
   getProductList() {
-    //search API
-    //https://api.bestbuy.com/v1/products(longDescription=refrigerator*)?format=json&show=sku,name,salePrice,description,color,customerTopRated,images&pageSize=12&page=1&apiKey=1Jk5hFqcjBSsbdjAnAPpDA8B
-    
-    //get Product
-    this.httpClient.get('https://api.bestbuy.com/v1/products(type=movie)?format=json&show=sku,name,salePrice,description,color,customerTopRated,images&pageSize=12&page=1&apiKey=1Jk5hFqcjBSsbdjAnAPpDA8B')
-      .subscribe((data: any) => {
-        console.log('product list', data);
-        this.productList = data.products;
-      });
+    this.getDataService.getMainProductList()
+      .subscribe(products => this.productList = products);
+  }
+
+  addToCart(item) {
+    this.getDataService.addToCart(item);
   }
 
 }

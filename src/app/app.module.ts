@@ -10,13 +10,16 @@ import { HeaderComponent } from './header/header.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 
+import { GetDataService } from './get-data.service';
+import { CartComponent } from './cart/cart.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
     ProductListComponent,
-    ProductdetailComponent
+    ProductdetailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [GetDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

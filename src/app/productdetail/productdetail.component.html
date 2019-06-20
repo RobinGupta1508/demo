@@ -1,33 +1,32 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <img src="https://i5.walmartimages.com/asr/a8ccccf3-2d4c-444d-8215-451018414149_1.9b5a4a0804a91b5c30a2f42f3d55cd2a.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff">
+  <div class="row justify-content-start" style="padding-top:20px;">
+    <div class="col-md-4 col-lg-4 mr-auto ">
+      <div class="media border" style="padding:10px">
+        <img style="max-height:400px; max-width:400px;" class="align-self-end mr-3" [src]="selectedProduct?.images[0].href"
+          alt="Generic placeholder image">
+      </div>
     </div>
-    <div class="col">
+    <div class="col-md-8 col-lg-8 mr-auto">
       <div>
-        <h4>Summit Appliance 36 Bottle Single Zone Freestanding Commercial Wine Cooler</h4>
+        <h4>{{selectedProduct.name}}</h4>
+      </div>
+      <div>
+        <h6>${{selectedProduct.salePrice}}</h6>
+      </div>
+      <div>
+        <h4><span class="badge badge-success rounded">{{selectedProduct.customerReviewAverage}}</span>
 
-        
-        <!-- <span>
-          <h4>Description</h4> Features: -Automatic defrost: Reduced maintenance with auto defrost system. -Scalloped
-          steel shelving: Curved shelves designed for storage of wine bottles. -Professional towel bar handle: Curved
-          stainless steel handle provides for a comfortable grip. -Adjustable thermostat: Manages temperature with ease
-          and accuracy. -Environmentally friendly design. -ADA compliant. Color/Finish: -Black. Cooling System:
-          -Compressor. Defrost System: -Automatic/Frost Free. Interior Light: -Yes. Integrated Lock: -Yes. Temperature
-          Zones: -Single zone. Door Style: -Insulated. Wine Bottle Capacity: -36. Product Size: -Compact. Number of
-          Shelves: -4. Generic Specifications: -High side PSI: 285.0. -Low side PSI: 70.0. -Freon type: R134a.
-          -Sanitation: ETL-S. Dimensions: Overall Height - Top to Bottom: -32.25&quot;. Overall Width - Side to Side:
-          -23.63&quot;. Overall Depth - Front to Back: -24&quot;. Overall Product Weight: -100 lbs. Chiller Cooler
-          Coolers Fridge Refrigerator Appliances Large Majors Re
-        </span>
-        <span>
-          <h6>Brand</h6>
-          Summit Appliance
-        </span>
-        <span>
-          <h6>Brand</h6>
-          Summit Appliance
-        </span> -->
+        </h4>
+        <span *ngIf="selectedProduct.customerReviewCount">{{selectedProduct.customerReviewCount}} Reviews</span>
+      </div>
+      <div *ngIf="selectedProduct.description else dummyDescription" >
+        {{selectedProduct.description}}
+      </div>
+      <ng-template #dummyDescription>
+          <p style="font-weight: lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </ng-template>
+      <div>
+        <button [disabled]="selectedProduct.cartQuantity"  class="btn btn-lg btn-primary" (click)="addToCart(selectedProduct)">{{selectedProduct.cartQuantity ? 'Added to cart': 'Add to cart'}}</button>
       </div>
     </div>
   </div>

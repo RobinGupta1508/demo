@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row" *ngFor="let item of cartData">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-2 text-center">
+            <img style="height:150px; width:120px" [src]="item.images[2].href">
+            <button class="btn btn-sm btn-success" (click)="item.cartQuantity = item.cartQuantity -1" >-</button>
+            <span style="margin:10px">{{item.cartQuantity}}</span>
+            <button class="btn btn-sm btn-success" (click)="item.cartQuantity = item.cartQuantity +1">+</button>
+          </div>
+
+          <div class="col-md-10">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
